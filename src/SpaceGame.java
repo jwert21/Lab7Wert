@@ -85,22 +85,22 @@ public class SpaceGame extends JFrame implements KeyListener {
         gamePanel.setLayout(null);
 
         scoreLabel = new JLabel("Score: 0");
-        scoreLabel.setForeground(Color.YELLOW);
-        scoreLabel.setBounds(10, 10, 150, 5);
+        scoreLabel.setForeground(Color.BLUE);
+        scoreLabel.setBounds(10, 10, 150, 20);
         gamePanel.add(scoreLabel);
 
         healthLabel = new JLabel("Health: 100");
-        healthLabel.setForeground(Color.YELLOW);
+        healthLabel.setForeground(Color.BLUE);
         healthLabel.setBounds(10, 30, 100, 20);
         gamePanel.add(healthLabel);
 
         timerLabel = new JLabel("Time: 60");
-        timerLabel.setForeground(Color.YELLOW);
+        timerLabel.setForeground(Color.BLUE);
         timerLabel.setBounds(350, 10, 100, 20);
         gamePanel.add(timerLabel);
 
         levelLabel = new JLabel("Level: 1");
-        levelLabel.setForeground(Color.YELLOW);
+        levelLabel.setForeground(Color.BLUE);
         levelLabel.setBounds(350, 30, 100, 20);
         gamePanel.add(levelLabel);
 
