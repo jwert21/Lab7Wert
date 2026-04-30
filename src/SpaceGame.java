@@ -230,7 +230,7 @@ public class SpaceGame extends JFrame implements KeyListener {
         if (playerImage != null) {
             g.drawImage(playerImage, playerX, playerY, PLAYER_WIDTH, PLAYER_HEIGHT, this);
         } else {
-            g.setColor(Color.BLUE);
+            g.setColor(Color.YELLOW);
             g.fillRect(playerX, playerY, PLAYER_WIDTH, PLAYER_HEIGHT);
         }
 
