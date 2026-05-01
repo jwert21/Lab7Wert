@@ -182,7 +182,7 @@ public class SpaceGame extends JFrame implements KeyListener {
     }
 
     private void loadImages() {
-        URL playerURL = getClass().getResource("/resources/spaceship.png");
+        URL playerURL = getClass().getResource("/resources/spaceship.gif");
 
         if (playerURL != null) {
             playerImage = new ImageIcon(playerURL).getImage();
