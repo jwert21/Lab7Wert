@@ -202,7 +202,7 @@ public class SpaceGame extends JFrame implements KeyListener {
         obstacleImages = new Image[4];
 
         for (int i = 0; i < 4; i++) {
-            URL asteroidURL = getClass().getResource("/resources/asteroid" + (i + 1) + ".png");
+            URL asteroidURL = getClass().getResource("/resources/asteroid" + (i + 1) + ".gif");
 
             if (asteroidURL != null) {
                 obstacleImages[i] = new ImageIcon(asteroidURL).getImage();
@@ -471,10 +471,12 @@ public class SpaceGame extends JFrame implements KeyListener {
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundURL);
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);
+
+            clip.setFramePosition(0); // ensures replay from start
             clip.start();
 
         } catch (Exception e) {
-            System.out.println("Sound could not play: " + fileName);
+            e.printStackTrace();
         }
     }
 
