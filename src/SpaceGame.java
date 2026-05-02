@@ -19,7 +19,7 @@ public class SpaceGame extends JFrame implements KeyListener {
     private static final int PROJECTILE_WIDTH = 5;
     private static final int PROJECTILE_HEIGHT = 15;
 
-    private static final int HEALTH_POWERUP_SIZE = 40;
+    private static final int HEALTH_POWERUP_SIZE = 120;
 
     private static final int PLAYER_SPEED = 4;
     private int obstacleSpeed = 2;
@@ -38,6 +38,7 @@ public class SpaceGame extends JFrame implements KeyListener {
 
     private Timer gameTimer;
     private Timer countdownTimer;
+    private Timer shieldTimer;
 
     private boolean isGameOver;
     private boolean shieldActive;
@@ -480,6 +481,25 @@ public class SpaceGame extends JFrame implements KeyListener {
         }
     }
 
+    private void activateShield() {
+        if (shieldActive) return; // prevents stacking
+
+        shieldActive = true;
+
+        // Stop old timer if it exists
+        if (shieldTimer != null && shieldTimer.isRunning()) {
+            shieldTimer.stop();
+        }
+
+        // Shield lasts 3 seconds (3000 ms)
+        shieldTimer = new Timer(3000, e -> {
+            shieldActive = false;
+        });
+
+        shieldTimer.setRepeats(false); // run once
+        shieldTimer.start();
+    }
+
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -500,7 +520,7 @@ public class SpaceGame extends JFrame implements KeyListener {
         } else if (keyCode == KeyEvent.VK_SPACE && !isFiring) {
             fireProjectile();
         } else if (keyCode == KeyEvent.VK_CONTROL) {
-            shieldActive = true;
+            activateShield();
         }
     }
 
@@ -533,10 +553,6 @@ public class SpaceGame extends JFrame implements KeyListener {
 
         if (keyCode == KeyEvent.VK_RIGHT) {
             movingRight = false;
-        }
-
-        if (keyCode == KeyEvent.VK_CONTROL) {
-            shieldActive = false;
         }
     }
 
