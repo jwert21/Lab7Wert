@@ -13,8 +13,8 @@ public class SpaceGame extends JFrame implements KeyListener {
     private static final int PLAYER_WIDTH = 150;
     private static final int PLAYER_HEIGHT = 150;
 
-    private static final int OBSTACLE_WIDTH = 40;
-    private static final int OBSTACLE_HEIGHT = 40;
+    private static final int OBSTACLE_WIDTH = 120;
+    private static final int OBSTACLE_HEIGHT = 120;
 
     private static final int PROJECTILE_WIDTH = 5;
     private static final int PROJECTILE_HEIGHT = 15;
@@ -190,7 +190,7 @@ public class SpaceGame extends JFrame implements KeyListener {
             System.out.println("Could not load spaceship.png");
         }
 
-        URL healthURL = getClass().getResource("/resources/healthup.png");
+        URL healthURL = getClass().getResource("/resources/healthup.gif");
 
         if (healthURL != null) {
             healthPowerUpImage = new ImageIcon(healthURL).getImage();
