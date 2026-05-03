@@ -1,3 +1,13 @@
+/** Project: Solo Lab 7 Assignment
+ * Purpose Details:
+ * Course: IST 242
+ * Author: Jonah Wert
+ * Date Developed: 4/28/2026
+ * Last Date Changed: 5/2/2026
+ * Rev: 5/2/2026
+
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
