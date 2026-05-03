@@ -30,11 +30,16 @@ public class SpaceGame extends JFrame implements KeyListener {
     private int level = 1;
     private int timeLeft = 60;
 
+    private boolean challengeActive = false;
+    private int asteroidsDestroyed = 0;
+    private int challengeGoal = 5;
+
     private JPanel gamePanel;
     private JLabel scoreLabel;
     private JLabel healthLabel;
     private JLabel timerLabel;
     private JLabel levelLabel;
+    private JLabel challengeLabel;
 
     private Timer gameTimer;
     private Timer countdownTimer;
@@ -105,6 +110,11 @@ public class SpaceGame extends JFrame implements KeyListener {
         levelLabel.setBounds(350, 30, 100, 20);
         gamePanel.add(levelLabel);
 
+        challengeLabel = new JLabel("");
+        challengeLabel.setForeground(Color.BLUE);
+        challengeLabel.setBounds(150, 10, 250, 20); // adjust if needed
+        gamePanel.add(challengeLabel);
+
         add(gamePanel);
         gamePanel.setFocusable(true);
         gamePanel.addKeyListener(this);
@@ -128,11 +138,15 @@ public class SpaceGame extends JFrame implements KeyListener {
                 if (timeLeft == 40) {
                     level = 2;
                     obstacleSpeed = 5;
+
+                    startChallenge();
                 }
 
                 if (timeLeft == 20) {
                     level = 3;
                     obstacleSpeed = 7;
+
+                    startChallenge();
                 }
 
                 levelLabel.setText("Level: " + level);
@@ -312,6 +326,18 @@ public class SpaceGame extends JFrame implements KeyListener {
 
         scoreLabel.setText("Score: " + score);
         healthLabel.setText("Health: " + health);
+
+        if (challengeActive && asteroidsDestroyed >= challengeGoal) {
+            challengeActive = false;
+            score += 100; // reward
+            System.out.println("Challenge Complete!");
+        }
+
+        if (challengeActive) {
+            challengeLabel.setText("Destroy: " + asteroidsDestroyed + "/" + challengeGoal);
+        } else {
+            challengeLabel.setText("");
+        }
     }
 
     private void movePlayer() {
@@ -429,6 +455,9 @@ public class SpaceGame extends JFrame implements KeyListener {
             if (projectileRect.intersects(obstacleRect)) {
                 obstacles.remove(i);
                 score += 10;
+                if (challengeActive) {
+                    asteroidsDestroyed++;
+                }
                 isProjectileVisible = false;
                 playSound("collision.wav");
                 return;
@@ -541,6 +570,13 @@ public class SpaceGame extends JFrame implements KeyListener {
                 ex.printStackTrace();
             }
         }).start();
+    }
+
+    private void startChallenge() {
+        challengeActive = true;
+        asteroidsDestroyed = 0;
+
+        System.out.println("Challenge Started: Destroy 5 asteroids!");
     }
 
     @Override
