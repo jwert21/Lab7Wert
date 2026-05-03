@@ -212,16 +212,16 @@ public class SpaceGame extends JFrame implements KeyListener {
         if (playerURL != null) {
             playerImage = new ImageIcon(playerURL).getImage();
         } else {
-            System.out.println("Could not load spaceship.png");
+            System.out.println("Could not load spaceship.gif");
         }
 
         URL healthURL = getClass().getResource("/resources/healthup.gif");
 
         if (healthURL != null) {
             healthPowerUpImage = new ImageIcon(healthURL).getImage();
-            System.out.println("Loaded healthup.png");
+            System.out.println("Loaded healthup.gif");
         } else {
-            System.out.println("Could not load healthup.png");
+            System.out.println("Could not load healthup.gif");
         }
 
         obstacleImages = new Image[4];
@@ -231,9 +231,9 @@ public class SpaceGame extends JFrame implements KeyListener {
 
             if (asteroidURL != null) {
                 obstacleImages[i] = new ImageIcon(asteroidURL).getImage();
-                System.out.println("Loaded asteroid" + (i + 1) + ".png");
+                System.out.println("Loaded asteroid" + (i + 1) + ".gif");
             } else {
-                System.out.println("Could not load asteroid" + (i + 1) + ".png");
+                System.out.println("Could not load asteroid" + (i + 1) + ".gif");
             }
         }
     }
